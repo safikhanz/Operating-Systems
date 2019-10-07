@@ -1,0 +1,20 @@
+#!/bin/sh
+skel=/etc/skel
+if [ $# -eq 0 ]
+then echo Usage: $0 user_name
+else
+   entry=`grep "^$1:" /etc/passwd`
+   usedir=`echo $entry | cut -d: -f6`
+   grp=`echo $entry | cut -d: -f4`
+   mkdir $usedir $usedir/public_html
+   cp $skel/local.cshrc $usedir/.cshrc
+   cp $skel/local.login $usedir/.login
+   cp $skel/local.profile $usedir/.profile
+   cp $skel/index.html $usedir/public_html/index.html
+   old=`pwd`
+   cd $usedir
+   chown -R $1:$grp .
+   chmod -R g= .
+   chmod o=x .
+   cd $old
+fi

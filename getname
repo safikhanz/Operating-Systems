@@ -1,0 +1,5 @@
+#!/bin/sh
+for i in `cat $1`
+do
+   /etc/skel/CpWebFiles $i
+done
