@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <signal.h>
 
-#define SHMKEY 123123
+#define SHMKEY 786786
 
 
 
@@ -40,8 +40,8 @@ int main () {
     int *cint = ( shmat ( shmid, NULL, 0 ) );
 
 
-    int nanos = cint[1];
-    int seconds = cint[0];
+    int nanos = cint[2];
+    int seconds = cint[1];
     int rollover = 0;
 
 
@@ -51,11 +51,8 @@ int main () {
         nanos += rollover;
     }
 
-
-
-
-    if(nanos == cint[1] && seconds == cint[0]){
-        cint[2] = getpid();
+    if(nanos == cint[2] && seconds == cint[1]){
+        cint[3] = getpid();
         shmdt(cint);
         return 0;
     }
