@@ -1,0 +1,225 @@
+cd khan.3
+ls
+cat shm.c
+vi user.c
+ls
+vi function.c
+rm fun
+RM function.c 
+rm function.c 
+ls
+cd ..
+ls
+git init
+git add khan.3
+git commit -m "adding khan.3 folder to the github"
+git remote add origin https://github.com/safikhanz/Operating-Systems.git
+git push -u origin master
+git pull
+git push -u origin master
+git push -f origin
+git add khan.2
+git commit -m "adding khan.2 folder to the github"
+git remote add origin https://github.com/safikhanz/Operating-Systems.git
+git push -u origin master
+cd khan.2
+ls
+cd Project2/
+ls
+cat readme
+cat Readme 
+cd ..
+cd khan.3
+vi Readme
+git push
+ls
+cd ..
+git push -u origin master
+git add .
+git commit
+git push
+git push origin master
+git checkout master
+git rm .bash_history
+ls
+rm -r OSPro1/
+y
+git commit 
+git rm .bash_history
+ls
+cat CpSysFiles 
+cd khan.3
+ls
+vi main.c
+gcc main.c
+vi main.c 
+gcc main.c
+vi main.c 
+gcc main.c
+vi main.c
+gcc main.c
+ls
+./a.out -h
+./a.out -s
+./a.out -l filena
+./a.out -l filename
+ls
+vi main.c
+gcc main.c
+./a.out 
+./a.out -l filename
+git push
+cd ..
+git push -u origin master
+git push
+git add khan.3
+git commit -m "Added command line arguments"
+git push -u origin master
+cd khan.3
+ls
+vi Makefile
+git push -u origin master
+git commit -m "Addded Makefile to the Project"
+git push -u origin master
+git add Makefile
+git commit -m "Addded Makefile to the Project"
+git push -u origin master
+ls
+logout
+git rm --help
+git rm .bash_logout
+git push -u origin master
+git rm .bash_logout
+git commit -m "Removed .bash_logout"
+git reset
+git rm --cached .bash_logout
+git rm --cached viminfo
+git status
+git push -u origin master
+ls
+./getname
+cat getname
+git rm --cached getname
+git commit -m "Removed getname"
+git push -u master origin
+git push -u origin master
+ls
+git rm --cached .viminfo
+git commit -m "Removed viminfo"
+git push -u origin master
+git rm --cached CpSysFiles CpWebFiles
+git commit -m "Removed files"
+git push -u origin master
+git rm --cached index.html local.cshrc local.login local.profile .gitconfig
+git commit -m "Removed files"
+git push -u origin master
+git rm --cached OSPro1 Operating-Systems .bash_profile .bashrc .kshrc
+git commit -m "Removed files"
+git push -u origin master
+git config 
+git config credential.helper store
+git push https://github.com/repo.git
+logout
+ls
+cd khan.3
+git pull
+ls
+rm a.out
+ls
+vi shm.c
+vi main.c
+ls
+cd khan.3
+vi main.c
+ls
+ls -l
+ls -al
+cd ..
+ls
+ls -al
+cat .viminfo
+s -al
+ls -al
+cat .bash_history 
+cat .bash_profile 
+ls -al
+find . -type f -name "*.sw[klmnop]" -delete
+cd khan.3
+ls
+vi main.c 
+logout
+cd khan.3
+ls
+vi main.c
+gcc main.c
+./a.out -h
+./a.out i
+vi main.c
+gcc main.c
+vi main.c
+gcc main.c
+./a.out 
+vi main.c
+gcc main.c
+./a.out 
+k
+vi main.c
+ls
+vi us.c
+gcc us.c
+./a.out
+vi main.c
+vi us.c
+rm a.out 
+gcc us.c
+vi us.c
+gcc us.c
+./a.out 
+vi main.c
+vi Makefile 
+make
+ls
+vi user.c
+vi Makefile 
+make
+vi main.c
+make
+vi Makefile 
+ls
+make
+vi Makefile 
+make
+vi Makefile 
+make
+ls
+vi us.c
+make clean
+ls
+rm a.out 
+vi Makefile 
+make
+ls
+./oss
+./oss -s 4
+vi main.c
+vi user.o
+make clean
+ls
+vi Makefile 
+make
+ls
+vi Makefile 
+make
+ls
+./oss
+vi main.c
+make
+./oss
+vi main.c
+make
+./oss -s 3
+./oss -s 2
+./oss -s 0
+./oss -s 1
+vi main.c
+logout
