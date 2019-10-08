@@ -38,21 +38,21 @@ static void alarmHandler(int signo);
 int main(int argc, char* argv[])
 {
 
-	int opt; 
-	char filename[256]; 
-	int maxChildProcess = 5;   
+	int opt;//user choice for switch 
+	char filename[256]; //for log file
+	int maxChildProcess = 5;  // user choice for no. of forks, default set to 5 
 	int forkCount =0;
-	int killTime =20; 
-	int i,j; 
+	int killTime =20; //max time until master terminates itself 
+	int i,j;  // for looping 
 	int clockSize[3];
 
 	int shmid = shmget ( SHMKEY, sizeof(clockSize[3]), 0777 | IPC_CREAT );
-	
+	//get pointer to memory block
  	char * paddr = ( char * )( shmat ( shmid, NULL, 0 ) );
 	int * pint = ( int * )(paddr);
-	pint[1]=0; 
-	pint[2]=0; 
-	pint[3]=0; 
+	pint[1]=0; //for seconds
+	pint[2]=0; // for nanoseconds
+	pint[3]=0; //shmMsg
        while((opt = getopt(argc, argv, "hs:l:t:")) != -1)
         {
                 switch(opt)
@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
 		}
 	}
 //	signal(SIGALRM, alarmHandler);
-	alarm(killTime); 
+	alarm(killTime); // alarm times out (default 2 seconds) in killTime seconds, which is provided by user. 
 	forkCount = maxChildProcess;
 	pid_t pidHolder[maxChildProcess];
 	for(i=0; i<maxChildProcess; i++){
@@ -83,21 +83,22 @@ int main(int argc, char* argv[])
 	}
 
 	while(1 && flag ==0){
-
+/*
+ *  			Shared clock 
+ *  			 		*/
 		
-		pint[2]+=30000; 	
+		pint[2]+=30000;  //increasing nanoseconds by 30000 each iteration	
 		if(pint[2] > 999999999){
-		
+		//conversions for second and nanpseconds
 		pint[1]+=1;
-		pint[2] =0; 
+		pint[2] =0;//setting back nanoseconds after conversion 
 		}
 		
 		if(forkCount == 100){
 			printf("Program terminated after 100 forks\n");
-			
-		
+		//parent waits for all children to finish	
 			wait(0);
-		
+		//cleaning the shared memory
 			shmdt(pint);
 			return 0;
 
