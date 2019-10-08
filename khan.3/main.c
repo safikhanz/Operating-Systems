@@ -21,7 +21,6 @@
 
 int flag =0;
 sem_t *shm;
-sem_t *shmNotPalin;
 sem_t *shmPtr;
 
 void helpMenu() {
@@ -39,22 +38,21 @@ static void alarmHandler(int signo);
 int main(int argc, char* argv[])
 {
 
-	int opt; //user choice for switch
-	char filename[256]; //for log file
-	int maxChildProcess = 5;   // user choice for no. of forks, default set to 5 
+	int opt; 
+	char filename[256]; 
+	int maxChildProcess = 5;   
 	int forkCount =0;
-	int killTime =2; //max time until master terminates itself 
-	int i; // for looping 
+	int killTime =20; 
+	int i,j; 
 	int clockSize[3];
 
 	int shmid = shmget ( SHMKEY, sizeof(clockSize[3]), 0777 | IPC_CREAT );
-	//get pointer to memory block
+	
  	char * paddr = ( char * )( shmat ( shmid, NULL, 0 ) );
 	int * pint = ( int * )(paddr);
-	pint[1]=0; //for seconds
-	pint[2]=0; // for nanoseconds
-	pint[3]=0; //shmMsg
-
+	pint[1]=0; 
+	pint[2]=0; 
+	pint[3]=0; 
        while((opt = getopt(argc, argv, "hs:l:t:")) != -1)
         {
                 switch(opt)
@@ -74,8 +72,8 @@ int main(int argc, char* argv[])
 				break;
 		}
 	}
-	signal(SIGALRM, alarmHandler);
-	alarm(killTime); // alarm times out (default 2 seconds) in killTime seconds, which is provided by user.
+//	signal(SIGALRM, alarmHandler);
+	alarm(killTime); 
 	forkCount = maxChildProcess;
 	pid_t pidHolder[maxChildProcess];
 	for(i=0; i<maxChildProcess; i++){
@@ -84,40 +82,35 @@ int main(int argc, char* argv[])
 		}
 	}
 
-	while(){
+	while(1 && flag ==0){
 
-		/*
- 			Shared clock 
- 		*/
-		pint[2]+=30000; //increasing nanoseconds by 30000 each iteration	
+		
+		pint[2]+=30000; 	
 		if(pint[2] > 999999999){
-		//conversions for second and nanpseconds
+		
 		pint[1]+=1;
-		pint[2] =0; //setting back nanoseconds after conversion
+		pint[2] =0; 
 		}
 		
 		if(forkCount == 100){
 			printf("Program terminated after 100 forks\n");
 			
-			//parent waits for all children to finish 
+		
 			wait(0);
-			//cleaning the shared memory
+		
 			shmdt(pint);
 			return 0;
 
 		} 	
 
 		
-            if(pint[2] > 0){
- 
-
-
-                for(int bb = 0; bb < ss; bb++){
-                    if(pint[2] == pidHolder[bb]) {
+		if(pint[2] > 0){
+                for(j = 0; j < maxChildProcess;j++){
+                    if(pint[2] == pidHolder[j]) {
                        
                         FILE *fp = fopen(filename, "a+");
                         fputs("Child: ", fp);
-                        fprintf(fp, "%d", pidHolder[bb]);
+                        fprintf(fp, "%d", pidHolder[j]);
                         fputs(" is terminating at my time ", fp);
                         fprintf(fp, "%d %s %d %s", pint[0], "seconds,", pint[1], "nanoseconds.\n");
                         fclose(fp);
@@ -125,7 +118,7 @@ int main(int argc, char* argv[])
                         forkCount++;
 
                    
-                        if ((pidHolder[bb] = fork()) == 0)
+                        if ((pidHolder[j] = fork()) == 0)
                             execl("./user", "user", NULL);
 
                     }
@@ -145,17 +138,11 @@ int main(int argc, char* argv[])
 
         
         printf("\n end of parent \n");
-      sig_usr(1);
+
 
         return 0;
 }
-
-
-	}
-return 0;
-}
-
-static void alarmHandler(){
+static void alarmHandler(int signo){
 printf("Caught an SIGALRM signal.\n");
     printf("Signal value = %d\n", signo);
 

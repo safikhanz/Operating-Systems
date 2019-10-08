@@ -1,9 +1,8 @@
-
 Safiullah khan
 CS4760
 Project 3
 
-The user can input file name and max processor and read the input and put it in the shared memory, the master then iterate to child 5 times to check if it is palindrom or not then save it to the palin.out if it is palin or nopalin if it is not palindrom, the goal of this project is to familiarize using semaphores.
+The user can input file name and max processor and read the input and put it in the shared memory, the master then iterate to child (default 5) times, the goal of this project is to familiarize using semaphores.
 
 
 SYNTAX
@@ -18,7 +17,7 @@ SYNTAX
 
 make		builds and creates exectuable 'oss'
 
-make clean	cleans object files and executablesmake
+make clean	cleans object files and executables make
 
 
 

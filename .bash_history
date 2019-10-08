@@ -223,3 +223,218 @@ make
 ./oss -s 1
 vi main.c
 logout
+cd khan.3
+ls
+make clean
+ls
+vi main.c
+ipcs
+vi main.c
+cd ..
+git add .
+git init
+git add khan.3
+git status
+git add .
+git commit
+git push -u origin master
+cd khan.3
+ls
+make
+vi main.c
+gcc main.c
+vi main.c
+gcc main.c
+./a.out
+make
+ls
+rm a.out 
+make
+ulimit -a
+ls
+make
+ gcc main.c
+s
+vi main.c
+gcc main.c
+kill -9
+kill 9
+kill
+kill a.out
+logout
+ugdSF
+AKGF
+AKJFB
+BHDKSGF
+B;
+S
+S
+S
+S
+S
+S
+LOGOUT
+BDCSV
+SDB
+D
+D
+KILL
+kill
+kill 9
+logut
+logout
+edç
+logout
+2
+//../as
+ls
+cd khan.3
+ls
+vi main.c
+gcc main.c
+vi main.c
+free -m
+ls
+vi us.c
+gcc us.c
+logout
+ls
+cd khan.3
+ls
+vi main.c
+gcc main.c
+./a.out 
+ls
+rm a.out 
+make
+vi us.c
+make clean
+ks
+ls
+make
+ls
+./oss -s 2
+make clean
+vi main.
+vi main.c
+make
+vi us.c
+make clean
+make
+./oss -s 2
+vi us.c
+make clean
+make
+./oss -s 2
+vi main.c
+gcc main.c
+./oss
+./oss -s 3
+vi main.c
+vi user.c
+vi main.c
+ls
+make clean
+rm a.out 
+make 
+./oss
+make clean
+ls
+vi main.c
+logout
+ls
+kill
+vi user.c
+rm user.c
+cd khan.3
+ls
+vi user.c
+ls
+vi user.c
+vi Makefile 
+vi main.c
+ls
+make
+./oss 
+vi user.c
+make clean
+make
+./oss
+vi main.c
+vi user.c
+ls
+make clean
+rm oss
+ls
+rm main.o
+ls
+vi Makefile 
+ls
+logout
+logout
+logout
+git init
+ls
+cat CpSysFiles 
+ps -aux
+kill 29858
+kill 2985*
+kill 29859
+kill 29849
+kill 29850
+kill 29851
+kill 29852
+kill 29853
+kill 29854
+kill 29855
+kill 29856
+kill 29857
+kill 29860
+kill 29861
+kill 29862
+kill 29863
+kill 29864
+kill 29865
+kill 29866
+kill 29867
+kill 29868
+kill 29869
+kill 29870
+kill 29871
+kill 29872
+kill 29873
+kill 29874
+logout
+ls
+cd khan.3
+ls
+cat us.c 
+vi user.c
+make
+ls
+./oss -s 3
+ls
+cat ??????
+clear
+rm ??????
+make clean
+ps -aux
+kill 32457
+ls
+cd khan.3
+vi main.c
+ls
+git pull
+cd ..
+git pull khan.3
+cd khan.3
+ls
+clear
+ls
+ls -al
+git pull origin master
+ls
+git fetch
+ls
+git checkout origin/master -- khan.3/main.c
+logout
