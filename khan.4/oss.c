@@ -1,10 +1,10 @@
 #include "control.h"
 
 
-char outputFileName[] = "logFile.txt";
-static int timer = 10;
+char outputFileName[] = "log.txt";
+static int timer = 2;
 static int msgid;
-static pid_t actual[MAX_USER_PROCESSES + 1];
+static pid_t actual[MaxUserProcess + 1];
 Clock maxTimeBetweenProc;
 
 SharedMemory* shm_ptr;
@@ -25,8 +25,8 @@ unsigned int cpuIdleTime = 0;
 
 void helpMenu();
 int selection(void);
-void setUpPCB(int location);
-void userOrReal(int fakePid);
+void init_PCB(int location);
+void userOrReal(int ProcPid);
 void getInterval(Clock *destinationClock, Clock sourceClock, int addNanoSeconds);
 int getPCBID(int array[]);
 void signalCall(int signum);
@@ -39,13 +39,13 @@ void createQueueSystem();
 int main(int argc, char* argv[]) {
         int c;
 
-        while((c = getopt (argc,argv, "ho:")) != -1) {
+        while((c = getopt (argc,argv, "hi:")) != -1) {
 
                 switch(c) {
                         case 'h':
                                 helpMenu();
                                 return 1;
-                        case 'o':
+                        case 'i':
                                 strcpy(outputFileName, optarg);
                                 break;
                         default:
@@ -65,27 +65,27 @@ int main(int argc, char* argv[]) {
 
    alarm(timer);
 
-
+//Shared memory
    
     if ((shmid = shmget(SHM_KEY, sizeof(SharedMemory), IPC_CREAT | 0600)) < 0) {
         perror("Error: shmget");
         exit(errno);
     }
-
+//Shared message queue
          
     if ((msgid = msgget(MESSAGEKEY, IPC_CREAT | 0600)) < 0) {
         perror("Error: mssget");
         exit(errno);
     }
 
-
+//attaching the shared memory and initializing the clock to 0
     shm_ptr = shmat(shmid, NULL, 0);
     shm_ptr->clockInfo.seconds = 0;
     shm_ptr->clockInfo.nanoSeconds = 0;
     maxTimeBetweenProc.seconds = 0;
     maxTimeBetweenProc.nanoSeconds = 0;
 
-    int pidSelection;
+    int pidSelection;// This is for process selection by their ID's
 
     createQueueSystem();
 
@@ -94,15 +94,15 @@ int main(int argc, char* argv[]) {
    int totalCount =0; 
     while(totalCount < maxProcess) {
 
-
+//getinterval from the start random
         getInterval(&shm_ptr->clockInfo, shm_ptr->clockInfo, rand() % CONSTANTNUMBER + 1);
-
+//If the line in the file contains more than 1000 then close the file.
         if(line > LINE_MAX) {
             fclose(fp);
         }
 
 
-
+//Checking the launch time to launch user processes at random interval
         if ((shm_ptr->clockInfo.seconds > maxTimeBetweenProc.seconds) ||
         (shm_ptr->clockInfo.seconds == maxTimeBetweenProc.seconds && shm_ptr->clockInfo.nanoSeconds > maxTimeBetweenProc.nanoSeconds)) {
 
@@ -118,7 +118,7 @@ int main(int argc, char* argv[]) {
 
                 SetBit(processTable, ProcPid);
 push(multilevelQueue[shm_ptr->ProcessControlBlock[ProcPid].priority], ProcPid);
-
+		//INCREASE THE CLOCK FOR NEW PROCSS TO GENERATE
                    getInterval(&maxTimeBetweenProc, shm_ptr->clockInfo, rand() % CONSTANTNUMBER + 1);
 
                    fprintf(fp, "OSS: Generating process with PID %d  at time %d:%d\n",  ProcPid, shm_ptr->clockInfo.seconds, shm_ptr->clockInfo.nanoSeconds);
@@ -126,7 +126,7 @@ push(multilevelQueue[shm_ptr->ProcessControlBlock[ProcPid].priority], ProcPid);
             }
         }
 
-
+//Selecting the queue
         pidSelection = selection();
 
 
@@ -161,7 +161,7 @@ push(multilevelQueue[shm_ptr->ProcessControlBlock[ProcPid].priority], ProcPid);
 }
 
 
-
+//Initializing the process control block to record stats
 void init_PCB(int location){
         shm_ptr->ProcessControlBlock[location].priority = 0;
         shm_ptr->ProcessControlBlock[location].cpu_usage_time = 0;
@@ -182,7 +182,7 @@ int selection(void) {
 
 
     for(i = 0; i < queueLevel; ++i) {
-        selectedProcess = pop_dequeue(multilevelQueue[i]);
+        selectedProcess = pop(multilevelQueue[i]);
 
          if (selectedProcess == -1) {
             continue;
@@ -195,7 +195,7 @@ int selection(void) {
     return -1;
 }
 
-
+// function to select the priority of the processes
 void userOrReal(int ProcPid) {
 
     int currentPriority = shm_ptr->ProcessControlBlock[ProcPid].priority;
@@ -220,7 +220,7 @@ void userOrReal(int ProcPid) {
     }
 
 
-    pushEnqueue(multilevelQueue[currentPriority], ProcPid);
+    push(multilevelQueue[currentPriority], ProcPid);
 
 
     fprintf(fp, "OSS: Putting process with PID %d into queue %d\n",ProcPid, currentPriority);
@@ -334,7 +334,7 @@ void recieveMessage(int destinationAddress){
 
     }
 }
-
+// To get the index of the process
 int getPCBID(int array[]) {
    int i;
     for (i = 1; i <= makeUserProcesses; i++) {
@@ -352,7 +352,7 @@ void makeUserProcesses(int location) {
         char childId[3];
 
 
-        setUpPCB(location);
+        init_PCB(location);
         pid_t childpid = fork();
         actual[location] = childpid;
 
@@ -376,7 +376,7 @@ void createQueueSystem(){
 
     int k=0;
     for (k = 0; k < 4; k++){
-        multilevelQueue[k] = createNewQueue(TIME_QUANTUM * 2);
+        multilevelQueue[k] = createQueue(TIME_QUANTUM * 1);
     }
 
     int j = 0;
@@ -388,4 +388,10 @@ void createQueueSystem(){
 
 }
 
+void helpMenu() {
+		printf("\n------------| Help Menu |---------------\n");
+		printf("-h help menu\n"); 
+		printf("-i filename	| filename of the log file.\n"); 
+		printf("-------------------------------------------\n");
+}
 

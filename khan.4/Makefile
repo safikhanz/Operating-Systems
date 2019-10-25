@@ -3,7 +3,7 @@ CFLAGS = -g -pthread
 
 TARGET1 = oss
 TARGET2 = user
-OBJS1 = osss.o
+OBJS1 = oss.o
 OBJS2 = user.o
 HEADER = control.h
 

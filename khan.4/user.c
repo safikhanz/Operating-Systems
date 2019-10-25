@@ -45,23 +45,23 @@ int main(int argc, char* argv[])
         int termProb = rand() % 100;
    
         if (termProb == 0) {
-            shm_ptr->processCB[childId].burst = shm_ptr->processCB[childId].time_quantum;
+            shm_ptr->ProcessControlBlock[childId].burst = shm_ptr->ProcessControlBlock[childId].time_quantum;
         } else {
-            shm_ptr->processCB[childId].burst = rand() % shm_ptr->processCB[childId].time_quantum;
+            shm_ptr->ProcessControlBlock[childId].burst = rand() % shm_ptr->ProcessControlBlock[childId].time_quantum;
         }
 
 	
-        int execRemaining = timeExecution - shm_ptr->processCB[childId].cpu_usage_time;
-        if (shm_ptr->processCB[childId].burst > execRemaining) {
-            shm_ptr->processCB[childId].burst = execRemaining;
+        int execRemaining = timeExecution - shm_ptr->ProcessControlBlock[childId].cpu_usage_time;
+        if (shm_ptr->ProcessControlBlock[childId].burst > execRemaining) {
+            shm_ptr->ProcessControlBlock[childId].burst = execRemaining;
             termMessage = "blocked";
         }
 
-        shm_ptr->processCB[childId].cpu_usage_time += shm_ptr->processCB[childId].burst;
+        shm_ptr->ProcessControlBlock[childId].cpu_usage_time += shm_ptr->ProcessControlBlock[childId].burst;
         
 	//if the process is completed, send message to the oss 
-        if (shm_ptr->processCB[childId].cpu_usage_time >= timeExecution) {
-            shm_ptr->processCB[childId].finished = 1;
+        if (shm_ptr->ProcessControlBlock[childId].cpu_usage_time >= timeExecution) {
+            shm_ptr->ProcessControlBlock[childId].finished = 1;
             termMessage = "terminated";
         }
 

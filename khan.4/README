@@ -1,0 +1,17 @@
+Safiullah khan
+
+This project designed to simulate the process scheduling in an Operating System. The log provides an overview about the process spawn timing,burst times,arrival time and also about quantum. 
+
+
+
+SYNTAX
+-h  			help menu
+
+-i  outputfilename	inputfilename is where the filename reads and it will show error if there is no filename found on the directory. output filename 
+			should be default name is "output.dat"  where the result is generated.
+
+make			builds and creates exectuable 'p1'
+make clean		cleans object files and executables
+
+
+

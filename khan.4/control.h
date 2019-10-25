@@ -60,6 +60,12 @@ PCB ProcessControlBlock[MaxUserProcess];
 Clock clockInfo;
 } SharedMemory;
 
+//declaring the multilevel queue for 4 levels
+static queueObject* multilevelQueue[4];
+
+queueObject* createNewQueue(int time_quantum);
+push_enqueue(queueObject* destinationQueue, int processID);
+
 
 // Function to create Queues for multi level queues
 queueObject* createQueue(int time_quantum) {
@@ -116,4 +122,9 @@ int pop(queueObject* sourceQueue) {
  }
 
 
+//declaring the multilevel queue for 4 levels
+static queueObject* multilevelQueue[4];
+
+queueObject* createNewQueue(int time_quantum);
+push(queueObject* destinationQueue, int processID);
 
