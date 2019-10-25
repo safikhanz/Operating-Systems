@@ -21,7 +21,7 @@
 #define ClearBit(A, k)	A[k/32]	&= ~(1 << (k%32)); //To clear the k'th bit in the bit array A.
 #define TestBit(A,k)	(A[((k-1)/32)]&(1<<((k-1)%32))) // To test the k'th bit in the bit array A.
 
-
+typedef struct Node_Object NodeObject;
 typedef struct Node_Object {
 	int process_id;
 	NodeObject* next_node;
@@ -57,14 +57,15 @@ int priority, burst, time_quantum, finished, cpu_usage_time;
 //to share the process control block for 18 process.
 typedef struct SharedMemoryObject{
 PCB ProcessControlBlock[MaxUserProcess];
-}SharedMemory;
+Clock clockInfo;
+} SharedMemory;
 
 
 // Function to create Queues for multi level queues
 queueObject* createQueue(int time_quantum) {
         queueObject* new_queue = (queueObject*) malloc(sizeof(queueObject));
 
-        new_queue->time_quantum = time_quantum_amt;
+        new_queue->time_quantum = time_quantum;
                               new_queue->front = NULL;
                               new_queue->back = NULL;
                               return new_queue;

@@ -1,28 +1,25 @@
 CC = gcc
-CFLAGS = -Wall  
-TARGET = oss
-TARGET1 = user
-OBJ = main.o 
-OBJ1 = user.o 
-SRC = main.c
-SRC1 = user.c
+CFLAGS = -g -pthread
 
+TARGET1 = oss
+TARGET2 = user
+OBJS1 = osss.o
+OBJS2 = user.o
+HEADER = control.h
 
-all: $(TARGET) $(TARGET1) 
-	
-$(TARGET):$(OBJ)
-	$(CC)  -o $(TARGET)  $(OBJ)
+all: $(TARGET1) $(TARGET2)
 
-$(TARGET1):$(OBJ1)
-	$(CC)  -o $(TARGET1)  $(OBJ1)
+oss: $(OBJS1)
+	$(CC) $(CFLAGS) -o oss oss.o
 
-$(OBJ): $(SRC)
-	$(CC)  $(CFLAGS) -c $(SRC)
+user: $(OBJS2)
+	$(CC) $(CFLAGS) -o user user.o
 
-$(OBJ1): $(SRC1)
-	$(CC)  $(CFLAGS) -c $(SRC1)
+%.o: %.c $(HEADER)
+	gcc -c $(CFLAGS) $*.c -o $*.o
 
 clean:
-	/bin/rm -f *.o $(TARGET)
-	/bin/rm -f *.o $(TARGET1)
-
+	/bin/rm -f *.o
+	/bin/rm -f $(TARGET1)
+	/bin/rm -f $(TARGET2)
+	/bin/rm -f log.txt
