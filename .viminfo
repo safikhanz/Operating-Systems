@@ -18,6 +18,7 @@
 :s
 
 # Search String History (newest to oldest):
+?//user choice for switch
 ? \<void\>
 
 # Expression History (newest to oldest):
@@ -28,139 +29,597 @@
 
 # Registers:
 ""1	LINE	0
-	   int shmid = shmget ( SHMKEY, sizeof(exampleSize[3]), 0775 | IPC_CREAT );
+	//
 "2	LINE	0
-	    //get pointer to memory block
+	522
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    return processID;
+	507
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     }
+	//
+	//
+	298
+<//                                                                                                                                                                                                                                                  sourceQueue->front = sourceQueue->front->next_node;
+	276
+<//                                                                                                                                                                                                                                                          free(temporary_node);
+	//
+	280
+<//                                                                                                                                                                                                                                                                  return processID;
+	265
+<//                                                                                                                                                                                                                                                                   }
+	//
 "3	LINE	0
-	       char * sharedMemory = ( char * )( shmat ( shmid, NULL, 0 ) );
+	
+	285
+<//                                                                                                                                                                                                                                                  bject* createQueue(int time_quantum) {
+	323
+<//                                                                                                                                                                                                                                                          queueObject* new_queue = (queueObject*) malloc(sizeof(QueueObject));
+	//
+	306
+<//                                                                                                                                                                                                                                                                  new_queue->time_quantum = time_quantum_amt;
+	317
+<//                                                                                                                                                                                                                                                                                                new_queue->front = NULL;
+	346
+<//                                                                                                                                                                                                                                                                                                                              new_queue->back = NULL;
+	370
+<//                                                                                                                                                                                                                                                                                                                                                            return new_queue;
+	354
+<//                                                                                                                                                                                                                                                                                                                                                            }
+	//
+	416
+<//                                                                                                                                                                                                                                                                                                                                                            int pushEnqueue(QueueObject* destinationQueue, int processID) {
+	//
+	388
+<//                                                                                                                                                                                                                                                                                                                                                                if (destinationQueue == NULL) {
+	375
+<//                                                                                                                                                                                                                                                                                                                                                                        return -1;
+	370
+<//                                                                                                                                                                                                                                                                                                                                                                            }
+	//
+	443
+<//                                                                                                                                                                                                                                                                                                                                                                                NodeObject* new_queue_node = (NodeObject*) malloc(sizeof(NodeObject));
+	416
+<//                                                                                                                                                                                                                                                                                                                                                                                    new_queue_node->process_id = processID;
+	414
+<//                                                                                                                                                                                                                                                                                                                                                                                        new_queue_node->next_node = NULL;
+	//
+	//
+	423
+<//                                                                                                                                                                                                                                                                                                                                                                                            if (destinationQueue->front == NULL) {
+	434
+<//                                                                                                                                                                                                                                                                                                                                                                                                    destinationQueue->front = new_queue_node;
+	441
+<//                                                                                                                                                                                                                                                                                                                                                                                                            destinationQueue->back = new_queue_node;
+	406
+<//                                                                                                                                                                                                                                                                                                                                                                                                                }
+	//
+	415
+<//                                                                                                                                                                                                                                                                                                                                                                                                                    else {
+	468
+<//                                                                                                                                                                                                                                                                                                                                                                                                                            destinationQueue->back->next_node = new_queue_node;
+	465
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                    destinationQueue->back = new_queue_node;
+	430
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+	//
+	//
+	442
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                            return 0;
+	434
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+	//
+	//
+	476
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                            int pop_dequeue(QueueObject* sourceQueue) {
+	//
+	//
+	472
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                                    if(sourceQueue->front == NULL){
+	491
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                                                   return -1; //this is an empty queue
+	466
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+	//
+	520
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    int processID = sourceQueue->front->process_id;
+	//
+	//
+	529
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            NodeObject* temporary_node = sourceQueue->front;
+	540
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    sourceQueue->front = sourceQueue->front->next_node;
+	518
+<//                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            free(temporary_node);
+	//
 "4	LINE	0
-	      int * shmMsg = ( int * )(sharedMemory );
+	298
+<//                                                                                                                                                                                                                                                  sourceQueue->front = sourceQueue->front->next_node;
+	276
+<//                                                                                                                                                                                                                                                          free(temporary_node);
+	//
+	280
+<//                                                                                                                                                                                                                                                                  return processID;
+	265
+<//                                                                                                                                                                                                                                                                   }
+	//
+	//
 "5	LINE	0
-		
+	
+	
+	
+	//create new queue
+	//queueObject* createQueue(int time_quantum) {
+	//        queueObject* new_queue = (queueObject*) malloc(sizeof(QueueObject));
+	//
+	//                new_queue->time_quantum = time_quantum_amt;
+	//                                              new_queue->front = NULL;
+	//                                                                            new_queue->back = NULL;
+	//                                                                                                          return new_queue;
+	//                                                                                                          }
+	//
+	//                                                                                                          int pushEnqueue(QueueObject* destinationQueue, int processID) {
+	//
+	//                                                                                                              if (destinationQueue == NULL) {
+	//                                                                                                                      return -1;
+	//                                                                                                                          }
+	//
+	//                                                                                                                              NodeObject* new_queue_node = (NodeObject*) malloc(sizeof(NodeObject));
+	//                                                                                                                                  new_queue_node->process_id = processID;
+	//                                                                                                                                      new_queue_node->next_node = NULL;
+	//
+	//
+	//                                                                                                                                          if (destinationQueue->front == NULL) {
+	//                                                                                                                                                  destinationQueue->front = new_queue_node;
+	//                                                                                                                                                          destinationQueue->back = new_queue_node;
+	//                                                                                                                                                              }
+	//
+	//                                                                                                                                                                  else {
+	//                                                                                                                                                                          destinationQueue->back->next_node = new_queue_node;
+	//                                                                                                                                                                                  destinationQueue->back = new_queue_node;
+	//                                                                                                                                                                                      }
+	//
+	//
+	//                                                                                                                                                                                          return 0;
+	//                                                                                                                                                                                          }
+	//
+	//
+	//                                                                                                                                                                                          int pop_dequeue(QueueObject* sourceQueue) {
+	//
+	//
+	//                                                                                                                                                                                                  if(sourceQueue->front == NULL){
+	//                                                                                                                                                                                                                 return -1; //this is an empty queue
+	//                                                                                                                                                                                                                          }
+	//
+	278
+<//                                                                                                                                                                                                                                  int processID = sourceQueue->front->process_id;
+	//
+	//
+	287
+<//                                                                                                                                                                                                                                          NodeObject* temporary_node = sourceQueue->front;
 "6	LINE	0
-	all: $(TARGET) $(TARGET1) 
+	
 "7	LINE	0
 	
 "8	LINE	0
 	
 "9	LINE	0
-	SRC1 = user.c
+	
+"u	CHAR	0
+	3327
+<eueObject* createQueue(int time_quantum) {        queueObject* new_queue = (queueObject*) malloc(sizeof(QueueObject));        new_queue->time_quantum = time_quantum_amt;                              new_queue->front = NULL;                              new_queue->back = NULL;                              return new_queue;}int pushEnqueue(QueueObject* destinationQueue, int processID) {    if (destinationQueue == NULL) {        return -1;    }    NodeObject* new_queue_node = (NodeObject*) malloc(sizeof(NodeObject));    new_queue_node->process_id = processID;    new_queue_node->next_node = NULL;    if (destinationQueue->front == NULL) {        destinationQueue->front = new_queue_node;        destinationQueue->back = new_queue_node;    }    else {        destinationQueue->back->next_node = new_queue_node;        destinationQueue->back = new_queue_node;    }    return 0;}int pop_dequeue(QueueObject* sourceQueue) {        if(sourceQueue->front == NULL){               return -1; //this is an empty queue         }        int processID = sourceQueue->front->process_id;        NodeObject* temporary_node = sourceQueue->front;        sourceQueue->front = sourceQueue->front->next_node;        free(temporary_node);        return processID; }€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€ku€ku€ku€ku€ku€ku€ku€ku€ku€kd€kd€kdqueueo€kl\€kb€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€ku€ku€ku€ku€ku€kd€kd€kr€kbO€kr€kd€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kbq€kd€kd€kd€kd€kd€kd€kd€kd€kd€ku€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kbq€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€ku€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€kd€ku€ku€kd€kd€kr€kr€kr€kr€kr€kr€kr€kr€kr€kb€kb€kr€kr€kr€kr€kr€kb€kb€kb€kb€kb€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kb€kb€kb€kb€kb€kb€kb€kb€kb€kb€kbtarget€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kd€kd€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kb€kb€kb€kb€kb€kb€kb€kb€kb€kb€kbtarget€kd€kd€kd€kd€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kd€kd€kd€kd€kd€ku€kd€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl\€kb€kb€kb€kb€kb€kb€kb€kb€kb€kb€kb€kbtarget€kd€kr€kr€kr€kr€kr€kb€kb€kb€kb€kb€kb€kb€kb€kb€kb€kbtarget€kd€kr€kr€kr€kr€kr€kb€kb€kb€kb€kb€kb€kb€kb€kb€kb€kbtarget€kd€kd€kd€kd€kd€kd€kd€kd€ku€ku€ku€ku€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kr€kl€kb€kb€kb€kb€kb€kb€kb€kb€kb€kb€kbtarget€kd€kr€kr€kr€kr€kr€kb€kb€kb€kb€kb€kb€kb€kb€kb€kb€kbtearget€kb€kb€kb€kb€kb€kbarhet€kb€kb€kb€kbrgetq€kbq€kb
 "-	CHAR	0
-	$
+	t
 
 # File marks:
-'0  29  0  ~/khan.3/Readme
-'1  47  0  ~/khan.3/shm.c
-'2  45  16  ~/khan.3/main.c
-'3  75  1  ~/khan.3/main.c
-'4  6  1  ~/khan.3/user.c
-'5  48  0  ~/khan.3/main.c
-'6  144  0  ~/khan.3/main.c
-'7  1  1  ~/khan.3/main.c
-'8  155  0  ~/khan.3/main.c
-'9  65  8  ~/khan.3/user.c
+'0  118  0  ~/khan.4/control.h
+'1  398  0  ~/khan.4/oss.c
+'2  61  0  ~/khan.4/control.h
+'3  98  0  ~/khan.4/user.c
+'4  1  18  ~/khan.4/oss.c
+'5  1  17  ~/khan.4/user.c
+'6  118  0  ~/khan.4/control.c
+'7  23  0  ~/khan.4/control.h
+'8  23  0  ~/khan.4/control.h
+'9  23  0  ~/khan.4/control.h
 
 # Jumplist (newest first):
+-'  118  0  ~/khan.4/control.h
+-'  119  0  ~/khan.4/control.h
+-'  61  0  ~/khan.4/control.h
+-'  398  0  ~/khan.4/oss.c
+-'  1  0  ~/khan.4/oss.c
+-'  23  30  ~/khan.4/control.h
+-'  98  0  ~/khan.4/user.c
+-'  1  0  ~/khan.4/user.c
+-'  118  0  ~/khan.4/control.c
+-'  1  0  ~/khan.4/control.c
+-'  1  0  ~/khan.4/control.h
+-'  91  13  ~/khan.3/main.c
+-'  138  3  ~/khan.3/main.c
+-'  92  4  ~/khan.3/main.c
+-'  177  0  ~/khan.3/main.c
+-'  137  3  ~/khan.3/main.c
+-'  135  24  ~/khan.3/main.c
+-'  1  0  ~/khan.3/main.
+-'  125  2  ~/khan.3/main.c
+-'  43  13  ~/khan.3/user.c
+-'  42  1  ~/khan.3/user.c
+-'  60  0  ~/khan.3/user.c
+-'  126  3  ~/khan.3/main.c
+-'  1  0  ~/khan.3/user
+-'  152  16  ~/khan.3/main.c
+-'  45  1  ~/khan.3/main.c
+-'  42  1  ~/khan.3/main.c
+-'  43  1  ~/khan.3/main.c
+-'  160  21  ~/khan.3/main.c
+-'  48  8  ~/khan.3/user.c
+-'  1  0  ~/khan.3/main.c
+-'  49  4  ~/khan.3/user.c
+-'  178  0  ~/khan.3/main.c
+-'  72  4  ~/khan.3/main.c
+-'  408  2  ~/khan.3/main.c
+-'  488  0  ~/khan.3/main.c
+-'  433  2  ~/khan.3/main.c
+-'  6  0  ~/khan.3/user.c
+-'  377  1  ~/khan.3/main.c
 -'  29  0  ~/khan.3/Readme
 -'  1  0  ~/khan.3/Readme
 -'  47  0  ~/khan.3/shm.c
--'  45  16  ~/khan.3/main.c
--'  75  0  ~/khan.3/main.c
--'  48  0  ~/khan.3/main.c
--'  6  1  ~/khan.3/user.c
--'  65  0  ~/khan.3/user.c
--'  144  0  ~/khan.3/main.c
--'  1  0  ~/khan.3/main.c
--'  155  0  ~/khan.3/main.c
--'  46  1  ~/khan.3/main.c
+-'  407  0  ~/khan.3/main.c
+-'  380  0  ~/khan.3/main.c
+-'  59  0  ~/khan.3/user.c
+-'  477  0  ~/khan.3/main.c
+-'  378  1  ~/khan.3/main.c
 -'  1  0  ~/khan.3/user.c
--'  237  2  ~/khan.3/main.c
--'  653  2  ~/khan.3/main.c
+-'  570  2  ~/khan.3/main.c
+-'  986  2  ~/khan.3/main.c
 -'  26  1  ~/khan.3/Makefile
--'  118  6  ~/khan.3/user.c
+-'  112  6  ~/khan.3/user.c
 -'  8  0  ~/khan.3/Makefile
--'  104  8  ~/khan.3/user.c
--'  694  17  ~/khan.3/main.c
--'  767  25  ~/khan.3/main.c
--'  801  0  ~/khan.3/main.c
+-'  98  8  ~/khan.3/user.c
+-'  1027  17  ~/khan.3/main.c
+-'  1100  25  ~/khan.3/main.c
+-'  1134  0  ~/khan.3/main.c
 -'  3  0  ~/khan.3/Makefile
 -'  21  24  ~/user.c
 -'  1  0  ~/user.c
--'  779  8  ~/khan.3/main.c
--'  729  105  ~/khan.3/main.c
--'  760  25  ~/khan.3/main.c
+-'  1112  8  ~/khan.3/main.c
+-'  1062  105  ~/khan.3/main.c
+-'  1093  25  ~/khan.3/main.c
 -'  19  1  ~/khan.3/us.c
 -'  6  0  ~/khan.3/us.c
 -'  4  0  ~/khan.3/us.c
--'  778  2  ~/khan.3/main.c
--'  1  0  ~/khan.3/main.
--'  693  1  ~/khan.3/main.c
--'  805  0  ~/khan.3/main.c
--'  690  6  ~/khan.3/main.c
--'  723  4  ~/khan.3/main.c
--'  735  0  ~/khan.3/main.c
--'  793  9  ~/khan.3/main.c
+-'  1111  2  ~/khan.3/main.c
+-'  1026  1  ~/khan.3/main.c
+-'  1138  0  ~/khan.3/main.c
+-'  1023  6  ~/khan.3/main.c
+-'  1056  4  ~/khan.3/main.c
+-'  1068  0  ~/khan.3/main.c
+-'  1126  9  ~/khan.3/main.c
 -'  1  1  ~/khan.3/Makefile
 -'  1  0  ~/khan.3/user.o
--'  728  1  ~/khan.3/main.c
--'  733  4  ~/khan.3/main.c
+-'  1061  1  ~/khan.3/main.c
+-'  1066  4  ~/khan.3/main.c
 -'  21  0  ~/khan.3/us.c
 -'  1  0  ~/khan.3/us.c
--'  722  4  ~/khan.3/main.c
--'  719  4  ~/khan.3/main.c
--'  692  1  ~/khan.3/main.c
+-'  1055  4  ~/khan.3/main.c
+-'  1052  4  ~/khan.3/main.c
+-'  1025  1  ~/khan.3/main.c
 -'  1  0  ~/khan.3/shm.c
--'  685  0  ~/khan.3/main.c
--'  664  0  ~/khan.3/main.c
--'  657  0  ~/khan.3/main.c
--'  655  0  ~/khan.3/main.c
+-'  1018  0  ~/khan.3/main.c
+-'  997  0  ~/khan.3/main.c
+-'  990  0  ~/khan.3/main.c
+-'  988  0  ~/khan.3/main.c
 -'  52  0  ~/khan.3/Readme
 -'  6  0  ~/khan.3/function.c
 -'  7  3  ~/khan.3/function.c
 -'  1  0  ~/khan.3/main,c
 -'  1  0  ~/khan.3/f
 -'  1  0  ~/khan.3/function.c
--'  36  1  ~/khan.3/shm.c
--'  163  19  ~/Operating-Systems/Project2/filep.c
--'  162  1  ~/Operating-Systems/Project2/filep.c
--'  213  0  ~/Operating-Systems/Project2/filep.c
--'  166  1  ~/Operating-Systems/Project2/filep.c
--'  215  0  ~/Operating-Systems/Project2/filep.c
--'  1  4  ~/Operating-Systems/Project2/fil.c
--'  61  4  ~/Operating-Systems/Project2/fil.c
--'  161  0  ~/Operating-Systems/Project2/filep.c
--'  53  2  ~/Operating-Systems/Project2/filep.c
--'  99  6  ~/Operating-Systems/Project2/filep.c
--'  15  14  ~/Operating-Systems/Project2/main.c
--'  28  164  ~/Operating-Systems/Project2/Readme
--'  36  0  ~/Operating-Systems/Project2/Readme
--'  1  0  ~/Operating-Systems/Project2/Readme
--'  12  5  ~/Operating-Systems/Project2/Makefile
--'  13  1  ~/Operating-Systems/Project2/Makefile
--'  1  0  ~/Operating-Systems/Project2/Makefile
--'  17  24  ~/Operating-Systems/Project2/makefile
--'  1  0  ~/Operating-Systems/Project2/makefile
--'  39  5  ~/Operating-Systems/Project2/filep.c
--'  79  6  ~/Operating-Systems/Project2/filep.c
--'  66  4  ~/Operating-Systems/Project2/filep.c
--'  130  0  ~/Operating-Systems/Project2/filep.c
--'  71  6  ~/Operating-Systems/Project2/filep.c
--'  112  8  ~/Operating-Systems/Project2/filep.c
--'  117  6  ~/Operating-Systems/Project2/filep.c
--'  133  0  ~/Operating-Systems/Project2/filep.c
--'  121  7  ~/Operating-Systems/Project2/filep.c
--'  4  0  ~/Operating-Systems/Project2/file.txt
--'  1  0  ~/Operating-Systems/Project2/file.txt
--'  9  0  ~/Operating-Systems/Project2/filep.c
--'  1  0  ~/Operating-Systems/Project2/filep.c
--'  160  9  ~/Operating-Systems/Project2/filep.c
--'  129  5  ~/Operating-Systems/Project2/filep.c
--'  48  2  ~/Operating-Systems/Project2/filep.c
--'  1  0  ~/Operating-Systems/Project2/filep.
--'  41  0  ~/Operating-Systems/Project2/filep.c
--'  1  0  ~/Operating-Systems/Project2/fil
+-'  63  0  ~/khan.4/control.h
+-'  64  0  ~/khan.4/control.h
+-'  62  0  ~/khan.4/control.h
+-'  398  0  ~/khan.4/oss.c
 
 # History of marks within files (newest to oldest):
+
+> ~/khan.4/control.h
+	"	118	0
+	^	118	0
+	.	99	29
+	+	23	0
+	+	1	0
+	+	9	0
+	+	8	16
+	+	23	5
+	+	23	0
+	+	23	450
+	+	23	0
+	+	23	0
+	+	23	0
+	+	23	0
+	+	23	9
+	+	23	33
+	+	23	2
+	+	23	3
+	+	23	0
+	+	23	51
+	+	23	7
+	+	23	0
+	+	23	0
+	+	23	15
+	+	23	0
+	+	23	0
+	+	23	0
+	+	23	0
+	+	23	0
+	+	23	0
+	+	23	0
+	+	23	0
+	+	23	2
+	+	23	351
+	+	23	352
+	+	23	0
+	+	23	8
+	+	23	8
+	+	23	8
+	+	23	3
+	+	23	7
+	+	6	0
+	+	1	1
+	+	4	1
+	+	2	0
+	+	3	0
+	+	23	0
+	+	23	0
+	+	20	30
+	+	20	45
+	+	21	20
+	+	20	17
+	+	21	49
+	+	22	21
+	+	20	82
+	+	21	92
+	+	23	0
+	+	23	0
+	+	23	0
+	+	23	1
+	+	23	41
+	+	23	27
+	+	34	2
+	+	23	0
+	+	119	1
+	+	119	0
+	+	119	0
+	+	119	1
+	+	119	0
+	+	116	0
+	+	64	5
+	+	65	62
+	+	73	27
+	+	75	13
+	+	84	13
+	+	85	13
+	+	86	13
+	+	90	13
+	+	91	14
+	+	100	8
+	+	110	23
+	+	112	17
+	+	24	0
+	+	48	37
+	+	63	50
+	+	72	48
+	+	80	18
+	+	81	18
+	+	84	19
+	+	85	19
+	+	86	19
+	+	90	19
+	+	91	19
+	+	90	25
+	+	91	20
+	+	90	20
+	+	86	20
+	+	85	20
+	+	84	20
+	+	81	19
+	+	80	19
+	+	22	38
+	+	99	29
+
+> ~/khan.4/oss.c
+	"	398	0
+	^	398	1
+	.	399	0
+	+	1	1
+	+	1	18
+	+	1	34
+	+	1	17
+	+	1	15
+	+	1	36
+	+	398	1
+	+	170	0
+	+	169	9
+	+	34	20
+	+	398	1
+	+	398	101
+	+	398	100
+	+	399	0
+
+> ~/khan.4/user.c
+	"	98	0
+	^	98	1
+	.	98	1
+	+	98	0
+	+	1	9
+	+	98	1
+
+> ~/khan.4/control.c
+	"	118	0
+	^	118	0
+	.	119	0
+	+	1	0
+	+	2	0
+	+	119	0
+
+> ~/khan.3/main.c
+	"	91	13
+	^	91	14
+	.	91	13
+	+	375	27
+	+	377	19
+	+	378	10
+	+	382	1
+	+	385	12
+	+	386	12
+	+	387	12
+	+	408	18
+	+	420	10
+	+	422	52
+	+	424	2
+	+	426	13
+	+	431	2
+	+	432	0
+	+	433	2
+	+	440	10
+	+	442	28
+	+	461	21
+	+	407	0
+	+	423	0
+	+	448	77
+	+	445	46
+	+	446	0
+	+	445	43
+	+	407	2
+	+	408	2
+	+	333	722
+	+	178	0
+	+	1	1
+	+	72	11
+	+	50	55
+	+	55	0
+	+	54	2
+	+	52	10
+	+	51	12
+	+	52	21
+	+	53	7
+	+	62	3
+	+	23	8
+	+	62	49
+	+	51	16
+	+	64	0
+	+	63	0
+	+	62	84
+	+	62	1
+	+	94	1
+	+	160	34
+	+	43	2
+	+	42	20
+	+	161	0
+	+	93	0
+	+	94	0
+	+	46	15
+	+	44	23
+	+	126	10
+	+	128	28
+	+	135	77
+	+	152	21
+	+	133	0
+	+	131	42
+	+	135	77
+	+	126	0
+	+	125	3
+	+	81	1
+	+	79	0
+	+	76	4
+	+	77	21
+	+	78	21
+	+	79	19
+	+	80	8
+	+	83	4
+	+	42	19
+	+	140	0
+	+	136	34
+	+	137	26
+	+	136	31
+	+	135	94
+	+	136	34
+	+	137	31
+	+	135	77
+	+	136	29
+	+	138	14
+	+	137	18
+	+	138	32
+	+	92	0
+	+	90	2
+	+	92	4
+	+	91	8
+	+	44	23
+	+	46	15
+	+	80	3
+	+	83	3
+	+	90	2
+	+	91	4
+	+	92	5
+	+	138	33
+	+	90	1
+	+	91	3
+	+	92	4
+	+	91	13
+
+> ~/khan.3/main.
+	"	1	0
+
+> ~/khan.3/user.c
+	"	43	13
+	^	43	14
+	.	43	13
+	+	112	0
+	+	1	0
+	+	91	21
+	+	92	23
+	+	93	0
+	+	98	14
+	+	104	43
+	+	105	13
+	+	73	20
+	+	81	12
+	+	86	44
+	+	93	15
+	+	98	22
+	+	93	19
+	+	112	6
+	+	59	0
+	+	1	1
+	+	59	8
+	+	23	0
+	+	6	1
+	+	25	20
+	+	42	23
+	+	41	22
+	+	51	43
+	+	52	13
+	+	50	0
+	+	27	0
+	+	32	0
+	+	32	0
+	+	34	0
+	+	36	0
+	+	39	0
+	+	41	1
+	+	42	0
+	+	42	23
+	+	33	0
+	+	31	11
+	+	37	54
+	+	38	0
+	+	39	0
+	+	38	8
+	+	48	15
+	+	43	13
+
+> ~/khan.3/user
+	"	1	0
 
 > ~/khan.3/Readme
 	"	29	0
@@ -273,136 +732,6 @@
 	+	41	1
 	+	1	17
 
-> ~/khan.3/main.c
-	"	45	16
-	^	45	17
-	.	45	16
-	+	749	10
-	+	756	0
-	+	752	11
-	+	754	15
-	+	755	11
-	+	758	0
-	+	672	16
-	+	674	0
-	+	672	10
-	+	677	11
-	+	682	13
-	+	681	15
-	+	680	15
-	+	679	20
-	+	679	24
-	+	686	33
-	+	801	0
-	+	799	40
-	+	792	1
-	+	795	33
-	+	737	19
-	+	738	0
-	+	739	9
-	+	738	21
-	+	739	26
-	+	738	25
-	+	740	26
-	+	759	29
-	+	759	30
-	+	789	6
-	+	760	1
-	+	759	3
-	+	760	2
-	+	761	21
-	+	763	24
-	+	764	24
-	+	765	24
-	+	766	24
-	+	767	24
-	+	768	24
-	+	770	24
-	+	773	24
-	+	774	29
-	+	776	21
-	+	777	17
-	+	779	13
-	+	781	2
-	+	759	1
-	+	667	20
-	+	667	19
-	+	668	0
-	+	793	0
-	+	794	0
-	+	760	34
-	+	761	30
-	+	759	10
-	+	765	53
-	+	767	78
-	+	773	40
-	+	779	20
-	+	787	0
-	+	693	23
-	+	669	1
-	+	670	1
-	+	671	1
-	+	755	1
-	+	778	4
-	+	690	23
-	+	724	104
-	+	725	0
-	+	731	0
-	+	730	1
-	+	729	24
-	+	729	2
-	+	731	1
-	+	730	1
-	+	755	0
-	+	778	4
-	+	770	26
-	+	771	30
-	+	767	26
-	+	653	2
-	+	485	2
-	+	320	4
-	+	155	0
-	+	24	0
-	+	108	34
-	+	109	44
-	+	113	52
-	+	121	39
-	+	46	7
-	+	85	19
-	+	145	33
-	+	108	45
-	+	107	1
-	+	108	0
-	+	1	1
-	+	145	0
-	+	75	1
-	+	45	16
-
-> ~/khan.3/user.c
-	"	6	1
-	^	6	2
-	.	6	1
-	+	118	0
-	+	1	0
-	+	97	21
-	+	98	23
-	+	99	0
-	+	104	14
-	+	110	43
-	+	111	13
-	+	79	20
-	+	87	12
-	+	92	44
-	+	99	15
-	+	104	22
-	+	99	19
-	+	118	6
-	+	65	0
-	+	1	1
-	+	65	8
-	+	23	0
-	+	6	1
-
 > ~/khan.3/Makefile
 	"	26	1
 	^	26	7
@@ -504,9 +833,6 @@
 	+	5	0
 	+	6	0
 	+	19	2
-
-> ~/khan.3/main.
-	"	1	0
 
 > ~/khan.3/user.o
 	"	1	0
@@ -713,60 +1039,3 @@
 	.	10	8
 	+	32	8
 	+	10	8
-
-> ~/Operating-Systems/Project2/Readme
-	"	28	164
-	^	28	165
-	.	28	164
-	+	36	100
-	+	1	20
-	+	13	9
-	+	31	0
-	+	34	162
-	+	36	0
-	+	36	93
-	+	28	164
-
-> ~/Operating-Systems/Project2/Makefile
-	"	12	5
-	^	12	6
-	.	8	14
-	+	17	36
-	+	7	17
-	+	1	14
-	+	2	12
-	+	3	5
-	+	12	12
-	+	13	24
-	+	8	14
-
-> ~/Operating-Systems/Project2/makefile
-	"	17	24
-	^	17	25
-	.	13	24
-	+	17	36
-	+	1	14
-	+	2	12
-	+	3	5
-	+	8	11
-	+	12	12
-	+	13	24
-
-> ~/Operating-Systems/Project2/file.txt
-	"	4	0
-	^	4	1
-	.	4	0
-	+	4	12
-	+	2	0
-	+	1	0
-	+	2	13
-	+	1	0
-	+	2	9
-	+	1	0
-	+	2	3
-	+	1	0
-	+	3	0
-	+	4	0
-
-> ~/Operating-Systems/Project2/filep.
-	"	1	0
