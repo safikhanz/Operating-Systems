@@ -6,33 +6,33 @@ SharedMemory* shm_ptr;
 static int msgId;
 
 
-void signalCallback (int signum);
 void mailMessage(int destination_address, char* termMessage);
 void recieveMessage(int destination_address);
 
 int main(int argc, char* argv[])
 {
+	
+	childId = atoi(argv[1]);
 
-    childId = atoi(argv[1]);
 
-
-
+//intitialzing the shared memory
     if ((shmid = shmget(SHM_KEY, sizeof(SharedMemory), 0600)) < 0) {
         perror("Error: shmget");
         exit(errno);
     }
-
+  
+    //initializing the message  queue 
     if ((msgId = msgget(MESSAGEKEY, 0600)) < 0) {
         perror("Error: msgget");
         exit(errno);
     }
 
-   
+   //attaching the shared memory pointer
     shm_ptr = shmat(shmid, NULL, 0);
-   
+   //for time
     srand(time(NULL));
-
-    int timeExecution = rand() % 40000000;
+//Time given to the process to execute
+    int timeExecution = rand() % 40000;
 
     char *termMessage;
 
@@ -41,10 +41,10 @@ int main(int argc, char* argv[])
 	
         recieveMessage(childId);
         
-	
-        int chance = rand() % 1000;
+	// calculating the terminating probability.
+        int termProb = rand() % 100;
    
-        if (chance == 0) {
+        if (termProb == 0) {
             shm_ptr->processCB[childId].burst = shm_ptr->processCB[childId].time_quantum;
         } else {
             shm_ptr->processCB[childId].burst = rand() % shm_ptr->processCB[childId].time_quantum;
@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 
         shm_ptr->processCB[childId].cpu_usage_time += shm_ptr->processCB[childId].burst;
         
-	
+	//if the process is completed, send message to the oss 
         if (shm_ptr->processCB[childId].cpu_usage_time >= timeExecution) {
             shm_ptr->processCB[childId].finished = 1;
             termMessage = "terminated";
@@ -72,27 +72,19 @@ int main(int argc, char* argv[])
 }
 
 
-void signalCallback (int signum) {
-    fprintf(stderr, "Generating Log File\n");
-
-    shmdt(shm_ptr);
-    exit(0);
-}
-
-
-void mailMessage(int destination_address,char *termMessage) {
-    static int size_of_message;
+void mailMessage(int address,char *termMessage) {
+    static int sizeofMessage;
     Message message;
-    message.messageAddress = destination_address;
+    message.messageAddress = address;
     message.returnAddress = childId;
-    size_of_message = sizeof(message) - sizeof(long);
-    msgsnd(msgId, &message, size_of_message, 0);
+    sizeofMessage = sizeof(message) - sizeof(long);
+    msgsnd(msgId, &message, sizeofMessage, 0);
 }
 
 
-void recieveMessage(int destination_address) {
-    static int size_of_message;
+void recieveMessage(int address) {
+    static int sizeofMessage;
     Message message;
-    size_of_message = sizeof(message) - sizeof(long);
-    msgrcv(msgId, &message, size_of_message, destination_address, 0);
+    sizeofMessage = sizeof(message) - sizeof(long);
+    msgrcv(msgId, &message, sizeofMessage, address, 0);
 }
