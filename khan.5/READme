@@ -9,7 +9,7 @@ https://github.com/safikhanz/Operating-Systems/tree/master/khan.5
 ##################
 Usage:
 	./oss
-
+	./oss -h 	For help Menu
 make			builds and creates exectuable 'oss'
 make clean		cleans object files and executables
 
