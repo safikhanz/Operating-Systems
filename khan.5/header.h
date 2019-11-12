@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> 0af43ad4b3540f24a7117e01042a543a479e3e6d
 #include <stdio.h>
 #include <signal.h>
 #include <sys/shm.h>
