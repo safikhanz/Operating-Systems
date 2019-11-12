@@ -1,10 +1,3 @@
-//
-// Created by crbaniak on 11/10/18.
-//
-
-#ifndef ASS5_HEADER_H
-#define ASS5_HEADER_H
-
 #include <stdio.h>
 #include <signal.h>
 #include <sys/shm.h>
@@ -20,29 +13,32 @@
 #include <sys/stat.h>
 #include <string.h>
 
-//shared mem keys, probs not secure in a header, but its here to stay
-#define CLOCK_SHMKEY 123123
-#define RD_SHMKEY 123124
+//shared mem keys
+#define CLOCK_SHMKEY 786786
+#define RD_SHMKEY 786781
+#define max_proc 18
+#define max_resources 20
+#define MessQ_Key 786782
 
 // ##### SHMEM STRUCTS #####
 // struct for time
 typedef struct {
     unsigned int seconds;
     unsigned int nanoseconds;
-} systemClock_t;
+} Clock_t;
 
 //struct for rescource descriptor
 typedef struct {
     // for managing pids, job of process, and time request iintervals
-    pid_t pids[18];
-    int pidJob[18];
-    int nanosRequest[18];
+    pid_t pids[max_proc];
+    int pidJob[max_proc];
+    int nanosRequest[max_proc];
 
     // tables for safety alg (banker's alg)
-    int rescources[20];
-    int max[18][20];
-    int allocated[18][20];
-    int request[18][20];
+    int rescources[max_resources];
+    int max[max_proc][max_resources];
+    int allocated[max_proc][max_resources];
+    int request[max_proc][max_resources];
 
 } rescourceDescriptor_t;
 
@@ -56,7 +52,7 @@ struct mesg_buffer {
 // ##### GLOBALS #####
 // globals for accessing pointers to shared memory
 int sysClockshmid; //holds the shared memory segment id
-systemClock_t *sysClockshmPtr; //points to the data structure
+Clock_t *sysClockshmPtr; //points to the data structure
 int RDshmid;
 rescourceDescriptor_t *RDPtr;
 int totalLines = 0; // total lines in log file
@@ -65,15 +61,20 @@ int randomClockTime[18] = {};
 int blockedQueue[18] = {};
 int requestTimeReached = 0;
 //msg q
-key_t key;
 int msgid;
 
+void messageQueueConfig(){
+    
+    // msgget creates a message queue
+    // and returns identifier
+    msgid = msgget(MessQ_key, 0666 | IPC_CREAT);
+}
 
 // allocates shared mem
 void sharedMemoryConfig() {
 
     //shared mem for sysClock
-    sysClockshmid = shmget(CLOCK_SHMKEY, sizeof(systemClock_t), IPC_CREAT|0777);
+    sysClockshmid = shmget(CLOCK_SHMKEY, sizeof(Clock_t), IPC_CREAT|0777);
     if(sysClockshmid < 0)
     {
         perror("sysClock shmget error in master \n");
@@ -100,12 +101,5 @@ void sharedMemoryConfig() {
 
 }
 
-void messageQueueConfig(){
-    // ftok to generate unique key
-    key = ftok("progfile", 65);
-    // msgget creates a message queue
-    // and returns identifier
-    msgid = msgget(key, 0666 | IPC_CREAT);
-}
 
-#endif //ASS5_HEADER_H
+
