@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 {
 
 	int opt;//user choice for switch 
-	char filename[256]; //for log file
+	char * filename; //for log file
 	//filename = 'output.dat';
 	int maxChildProcess = 5;  // user choice for no. of forks, default set to 5 
 	int forkCount =0;
