@@ -1,119 +1,37 @@
-commit e37cda54031002c2c992221384da999ed34b605f
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Tue Nov 12 13:17:38 2019 -0600
-
-    Adding project 5 to github
-
-commit 0c268a8cfb3c8686a32035c1279892c23918076e
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Thu Oct 24 22:57:00 2019 -0500
-
-    Final commit
-
-commit cb3a5e9c22995860edc74f0a7cb07d822ea0d8c8
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Thu Oct 24 21:17:30 2019 -0500
-
-    Added comments to oss.c
-
-commit 96ec0395973f8dfff14061efd0094df1258a87c9
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Thu Oct 24 19:46:24 2019 -0500
-
-    added comments
-
-commit 128994af58a7418fc5e1464beabce9e167e62e16
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Thu Oct 24 19:03:56 2019 -0500
-
-    initial commit
-
-commit 08283fa0dd26f5d6f681bfd447a06dee071a48dc
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Tue Oct 8 18:43:02 2019 -0500
-
-    changed user.c
-
-commit 3565bed4676e89fd774e270479263f5cb7cea822
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Tue Oct 8 18:40:40 2019 -0500
-
-    changed main.c
-
-commit 759ce09f5c1ba2a80a6e3ffd537cc1157639f077
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Tue Oct 8 18:33:05 2019 -0500
-
-    changed readme
-
-commit c6aba2d493a9232a10ecd48891263cd2700b5781
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Tue Oct 8 16:14:13 2019 -0500
-
-    Added shared clock
-
-commit edd0ceae5162cc9edf6e2d36f24d41a929d5552e
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Sun Oct 6 22:52:31 2019 -0500
-
-    Removed files
-
-commit 804832a22124c5a94bcc05548735ec04782f8dc9
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Sun Oct 6 22:51:07 2019 -0500
-
-    Removed files
-
-commit 2b459ad39fba0dd85d655fa514f9d05a79cdd5e3
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Sun Oct 6 22:49:55 2019 -0500
-
-    Removed files
-
-commit 11b89df54c731ef754eae65e2cdb3679dd7569e7
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Sun Oct 6 22:48:50 2019 -0500
-
-    Removed viminfo
-
-commit 1cc70d1eb577bf5af372b5cd19becc1851fdf2ee
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Sun Oct 6 22:47:13 2019 -0500
-
-    Removed getname
-
-commit 77831eae19e5dcf88dffb4a3bf0ff8a0a4b93230
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Sun Oct 6 22:40:43 2019 -0500
-
-    Removed .bash_logout
-
-commit 1604e16ce14224d386d9f885234c78c758465b40
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Sun Oct 6 20:21:46 2019 -0500
-
-    Addded Makefile to the Project
-
-commit 23b2d2e2a73eed161656a97ebfdd9668c2a30087
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Sun Oct 6 20:05:16 2019 -0500
-
-    Added command line arguments
-
-commit 80cafa7b1a512942f29171422291b7178c39594e
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Sun Oct 6 19:29:59 2019 -0500
-
-    Uploading all the Projects to github
-
-commit eb51b3ac3ee56fd2251bad40192edb99832b3b9d
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Sun Oct 6 19:03:34 2019 -0500
-
-    adding khan.2 folder to the github
-
-commit af44a75d9f66549cae480968126c55da836e2095
-Author: safikhanz <sskkn7@mail.umsl.edu>
-Date:   Sun Oct 6 18:58:28 2019 -0500
-
-    adding khan.3 folder to the github
+OS has detected Process P0 requesting R4 at time 0:25000000
+OS blocking P0 for requesting R4 at time 0:25000000
+OS has detected Process P4 requesting R1 at time 0:158000000
+OS blocking P4 for requesting R1 at time 0:158000000
+OS has detected Process P1 requesting R2 at time 0:418500000
+OS blocking P1 for requesting R2 at time 0:418500000
+OS has detected Process P8 requesting R8 at time 0:690400000
+OS blocking P8 for requesting R8 at time 0:690400000
+OS has detected Process P7 requesting R8 at time 0:861300000
+OS blocking P7 for requesting R8 at time 0:861300000
+OS has detected Process P11 requesting R9 at time 0:963900000
+OS blocking P11 for requesting R9 at time 0:963900000
+OS has detected Process P15 requesting R12 at time 1:84100001
+OS blocking P15 for requesting R12 at time 1:84100001
+OS has detected Process P12 requesting R8 at time 1:178200001
+OS blocking P12 for requesting R8 at time 1:178200001
+OS has detected Process P2 requesting R18 at time 1:287500001
+OS blocking P2 for requesting R18 at time 1:287500001
+OS has detected Process P13 requesting R18 at time 1:297300001
+OS blocking P13 for requesting R18 at time 1:297300001
+OS has detected Process P17 requesting R16 at time 1:463500001
+OS blocking P17 for requesting R16 at time 1:463500001
+OS has detected Process P3 requesting R8 at time 1:641200001
+OS blocking P3 for requesting R8 at time 1:641200001
+OS has detected Process P16 requesting R13 at time 1:702800001
+OS blocking P16 for requesting R13 at time 1:702800001
+OS has detected Process P14 requesting R8 at time 1:755100001
+OS blocking P14 for requesting R8 at time 1:755100001
+OS has detected Process P5 requesting R3 at time 1:829400001
+OS blocking P5 for requesting R3 at time 1:829400001
+OS has detected Process P10 requesting R13 at time 1:862800001
+OS blocking P10 for requesting R13 at time 1:862800001
+OS has detected Process P6 requesting R13 at time 2:200400002
+OS has detected Process P9 requesting R16 at time 2:233400002
+OS blocking P9 for requesting R16 at time 2:233400002
+OS has detected Process P6 requesting R15 at time 2:406200002
+OS blocking P6 for requesting R15 at time 2:406200002
