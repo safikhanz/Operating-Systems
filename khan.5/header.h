@@ -1,9 +1,3 @@
-//
-// Created by crbaniak on 11/10/18.
-//
-
-#ifndef ASS5_HEADER_H
-#define ASS5_HEADER_H
 
 #include <stdio.h>
 #include <signal.h>
