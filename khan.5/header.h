@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <signal.h>
 #include <sys/shm.h>
@@ -17,12 +16,14 @@
 //shared mem keys
 #define CLOCK_SHMKEY 786786
 #define RD_SHMKEY 786781
+
+//Global constants 
 #define max_proc 18
 #define max_resources 20
 #define MessQ_Key 786782
 
-// ##### SHMEM STRUCTS #####
-// struct for time
+
+// struct for clock
 typedef struct {
     unsigned int seconds;
     unsigned int nanoseconds;
@@ -50,7 +51,7 @@ struct mesg_buffer {
 } message;
 
 
-// ##### GLOBALS #####
+
 // globals for accessing pointers to shared memory
 int sysClockshmid; //holds the shared memory segment id
 Clock_t *sysClockshmPtr; //points to the data structure
@@ -68,7 +69,7 @@ void messageQueueConfig(){
     
     // msgget creates a message queue
     // and returns identifier
-    msgid = msgget(MessQ_key, 0666 | IPC_CREAT);
+    msgid = msgget(MessQ_Key, 0666 | IPC_CREAT);
 }
 
 // allocates shared mem

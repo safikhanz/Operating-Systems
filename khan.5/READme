@@ -1,0 +1,21 @@
+Safiullah Khan
+CS 4760-002
+
+###################
+Link to Github:
+https://github.com/safikhanz/Operating-Systems/tree/master/khan.5
+
+
+##################
+Usage:
+	./oss
+
+make			builds and creates exectuable 'oss'
+make clean		cleans object files and executables
+
+#################
+Description:
+
+    This is a simulated operating system dealing with rescource management. This project exec user process then let the child check if it will terminate, request, release resources, then it will return message queue what the master will do. If user process release, it will release the allocated to the available, terminate it release the allocated to available. If it is requesting it will check if the available is greater than the request if not then goes to block else it will request.
+
+

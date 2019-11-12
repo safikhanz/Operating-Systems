@@ -1,11 +1,11 @@
 #include "header.h"
 
-#define MAX_FORKS 18
 #define MAX_RAND 5
 
-void sigint(int);
+
+
+void sigint(int a);
 static void ALARMhandler();
-void initTables();
 void writeResultsToLog();
 void ossClock();
 void createProcess(int pidHolder[]);
@@ -18,6 +18,22 @@ void logAllocated(int, int);
 
 int main(int argc, char* argv[]) {
 
+int opt;
+
+while ((opt = getopt(argc,argv, "h"))!=-1){
+	switch (opt){
+		case 'h':
+			helpMenu();
+			return 1;
+	
+		default:
+			fprintf(stderr, "%s: Error: Unknown option -%c\n",argv[0],optopt);
+			return -1;	
+	}
+
+}
+
+	
     // shared memory config
     sharedMemoryConfig();
 
@@ -29,17 +45,12 @@ int main(int argc, char* argv[]) {
     signal(SIGALRM, ALARMhandler);
     alarm(2);
 
-    // inits for max matrix and rescources table
-   // initTables();
 
-    //####START CLOCK#####
+    //START CLOCK
     while(1){
         ossClock();                 // increments clock
         createProcess(pidHolder);   // creates process every x amount of time
         checkMsgQ();                // check for message q for request
-
-        // if rescources changed
-            // run bakers alg
 
          }
 
@@ -47,6 +58,25 @@ int main(int argc, char* argv[]) {
     shmdt(sysClockshmPtr);
     return 0;
 }
+
+
+
+void ossClock(){
+
+    int clockIncrement = 100000; // increment clock by 100,000 nanoseconds (1 microsecond)
+    int rollover;
+
+    if ((sysClockshmPtr->nanoseconds + clockIncrement) > 999999999){
+        rollover = (sysClockshmPtr->nanoseconds + clockIncrement) - 999999999;
+        sysClockshmPtr->seconds += 1;
+        sysClockshmPtr->nanoseconds = rollover;
+    } else {
+        sysClockshmPtr->nanoseconds += clockIncrement;
+    }
+
+
+}
+
 
 
 void sigint(int a) {
@@ -94,49 +124,11 @@ static void ALARMhandler() {
     printf("Timed out after 2 seconds.\n");
     exit(EXIT_SUCCESS);
 }
-void initTables(){
 
-    // init clock to random
-    time_t t;
-    srand((unsigned) time(&t));
-
-    int randNum;
-
-    // for max table
-    int ii, jj;
-    for(ii = 0; ii < 18; ii++){
-        for(jj = 0; jj < 20; jj++){
-            randNum = (rand() % MAX_RAND) + 1;
-            RDPtr->max[ii][jj] = randNum;
-        }
-    }
-
-    // for initial rescources
-    for(ii = 0; ii < 20; ii++){
-        randNum = (rand() % 10) + 1;
-        RDPtr->rescources[ii] = randNum;
-    }
-}
-
-void ossClock(){
-
-    int clockIncrement = 100000; // increment clock by 100,000 nanoseconds (1 microsecond)
-    int rollover;
-
-    if ((sysClockshmPtr->nanoseconds + clockIncrement) > 999999999){
-        rollover = (sysClockshmPtr->nanoseconds + clockIncrement) - 999999999;
-        sysClockshmPtr->seconds += 1;
-        sysClockshmPtr->nanoseconds = rollover;
-    } else {
-        sysClockshmPtr->nanoseconds += clockIncrement;
-    }
-
-
-}
 
 void createProcess(int pidHolder[]){
     int ii, jj;
-    for(ii = 0; ii < MAX_FORKS; ii++){
+    for(ii = 0; ii < max_proc; ii++){
         if(pidHolder[ii] == 0) {
 
             // creates random request table
@@ -157,13 +149,13 @@ void createProcess(int pidHolder[]){
             // get clock time to make next request
             randomClockTime[ii] = (rand() % 500000000) + 1000000;
 
-            char stashbox[10];
+            char mess[10];
 
-            sprintf(stashbox, "%d", randomClockTime[ii]);
+            sprintf(mess, "%d", randomClockTime[ii]);
 
             // fork user
             if ((pidHolder[ii] = fork()) == 0) {
-                execl("./user", stashbox, NULL);
+                execl("./user", mess, NULL);
             }
 
         }
@@ -173,13 +165,12 @@ void createProcess(int pidHolder[]){
 void checkMsgQ(){
     int pidPass;
 
-    // msgrcv to receive message
+    // msgrcv to receive message and if the message queue is full dont write to the message queue
     msgrcv(msgid, &message, sizeof(message), 1, IPC_NOWAIT);
 
     // display the message
     if(message.mesg_text[0] != '0') {
         pidPass = atoi(message.mesg_text);
-//        printf("Data Received is : %s \n", message.mesg_text);
         // do the work of the process
         processJob(pidPass);
     }
@@ -236,7 +227,6 @@ void processJob(int pid){
 
     } else if(jobNumber == 0) {             // terminate
         // kill process
-//        kill(pid, SIGKILL);
         requestTimeReached = 1;
         // write empty to pid block
         pidHolder[procNumber] = 0;
@@ -274,3 +264,10 @@ void logBlocked(int procNumber, int reqNum){
 
 }
 
+//help meny
+//void helpMenu() {
+	printf("---------------------------------------------------------------| Help Menu |--------------------------------------------------------------------------\n");
+	printf("-h help menu\n"); 
+	printf("------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+}
+											
