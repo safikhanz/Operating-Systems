@@ -1,15 +1,12 @@
 
 
-GITHUB: https://github.com/crb8v2/4760os_ass6
+GITHUB: https://github.com/safikhanz/Operating-Systems/tree/master/khan.6
 
 THIS PROJECT:
-	This is an example of Memory Management making requests between a page table and frame table. 
-	Termination occurs after all processes (max 18) have ran for a discrete amount of time.
+	This is an example of Memory Management making requests between a page table and frame table
 	If frames are not in the page table, a page fault occurs.
 	If there is a frame in the page table, the request is granted.
 	If the the frame table is full, the Least recently used algorithm is implemented.
 
  This project is incomplete, I did not get a chance to accuqire all the statistics that were asked. 
-This program contains code for the message queues, the simulated clock, the arrays to hold all the
- pages, functions to kill the process and all children on interrupt, functions to determine when to
- launch a new process and basic code to fork a process. 
+ Memory Layout output does not work. 
